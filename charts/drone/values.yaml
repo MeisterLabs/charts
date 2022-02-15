@@ -156,10 +156,12 @@ extraSecretNamesForEnvFrom: []
 ## Ref: https://docs.drone.io/installation/reference/
 ##
 env:
+  DRONE_RESOURCE_REQUEST_CPU: 2000
+  DRONE_RESOURCE_REQUEST_MEMORY: 2000MiB
   ## REQUIRED: Set the user-visible Drone hostname, sans protocol.
   ## Ref: https://docs.drone.io/installation/reference/drone-server-host/
   ##
-  DRONE_SERVER_HOST: ""
+  DRONE_SERVER_HOST: "drone-staging.meisterlabs.com"
   ## The protocol to pair with the value in DRONE_SERVER_HOST (http or https).
   ## Ref: https://docs.drone.io/installation/reference/drone-server-proto/
   ##
