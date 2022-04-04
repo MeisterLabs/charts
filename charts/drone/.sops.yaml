@@ -1,0 +1,5 @@
+creation_rules:
+  - path_regex: secrets\.production\.yaml$
+    gcp_kms: projects/meisterlabs-prod/locations/global/keyRings/sops/cryptoKeys/sops-key
+  - path_regex: secrets\..*\.yaml(.dec)?$
+    gcp_kms: projects/meisterlabs-staging/locations/global/keyRings/accounts-sops/cryptoKeys/sops-key

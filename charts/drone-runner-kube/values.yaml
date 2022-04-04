@@ -1,6 +1,6 @@
 image:
   repository: drone/drone-runner-kube
-  tag: 1.0.0-rc.2
+  tag: 1.0.0-rc.3
   pullPolicy: IfNotPresent
 
 ## If you need to pull images from a private Docker image repository, pass in the name
@@ -69,7 +69,10 @@ resources: {}
 ##
 nodeSelector: {}
 
-tolerations: []
+tolerations:
+  - key: "is-system-pool"
+    value: "true"
+    effect: "NoSchedule"
 
 affinity: {}
 

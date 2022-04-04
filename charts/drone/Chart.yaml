@@ -3,8 +3,8 @@ name: drone
 description: Drone is a self-service Continuous Delivery platform for busy development teams
 
 type: application
-version: 0.2.2+meister
-appVersion: 2.8.0
+version: 0.3.0+meister
+appVersion: 2.11.1
 kubeVersion: "^1.13.0-0"
 home: https://drone.io/
 icon: https://drone.io/apple-touch-icon.png
