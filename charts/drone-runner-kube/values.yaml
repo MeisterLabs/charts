@@ -69,10 +69,7 @@ resources: {}
 ##
 nodeSelector: {}
 
-tolerations:
-  - key: "is-system-pool"
-    value: "true"
-    effect: "NoSchedule"
+tolerations: []
 
 affinity: {}
 
@@ -80,12 +77,17 @@ affinity: {}
 ## Volumes here per the Pod spec's "volumes" section.
 ## Ref: https://kubernetes.io/docs/concepts/storage/volumes/
 ##
-extraVolumes: []
+extraVolumes: 
+  - name: drone-runner-kube ##{{ include "drone-runner-kube.fullname" . }}
+    configMap:
+      name: drone-runner-kube ##{{ include "drone-runner-kube.fullname" . }}
 ## If you have declared extra volumes, mount them here, per the Pod Container's
 ## "volumeMounts" section.
 ##
-extraVolumeMounts: []
-
+extraVolumeMounts: 
+  - name: drone-runner-kube ##{{ include "drone-runner-kube.fullname" . }}
+    mountPath: /mnt/conf/policy.yaml
+    subPath: policy.yaml
 ## If you'd like to provide your own Kubernetes Secret object instead of passing your values
 ## in un-encrypted, pass in the name of a created + populated Secret in the same Namespace
 ## as the Kubernetes runner. All secrets within this configmap will be mounted as environment
@@ -108,7 +110,7 @@ rbac:
 ## Ref: https://kube-runner.docs.drone.io/installation/reference/
 ##
 env:
-  DRONE_POLICY_FILE: /path/to/policy.yml
+  DRONE_POLICY_FILE: /mnt/conf/policy.yaml
   DRONE_RESOURCE_REQUEST_CPU: 2000
   DRONE_RESOURCE_REQUEST_MEMORY: 2000Mi
   ## REQUIRED: Set the secret secret token that the Kubernetes runner and its runners will use

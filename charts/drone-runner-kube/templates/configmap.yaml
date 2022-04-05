@@ -12,3 +12,5 @@ data:
 {{- range $envKey, $envVal := .Values.env }}
   {{ $envKey | upper }}: {{ $envVal | quote }}
 {{- end }}
+  policy.yaml: |-
+{{ .Files.Get "files/policy.yaml" | indent 4 }}

@@ -1,0 +1,11 @@
+---
+kind: policy
+name: default
+
+node_selector:
+  pool-type: worker
+
+tolerations:
+  - key: "is-system-pool"
+    value: "false"
+    effect: "NoSchedule"

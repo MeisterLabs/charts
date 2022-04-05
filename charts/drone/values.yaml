@@ -68,10 +68,7 @@ resources: {}
 ##
 nodeSelector: {}
 
-tolerations: 
-  - key: "is-system-pool"
-    value: "true"
-    effect: "NoSchedule"
+tolerations: []
 
 affinity: {}
 
