@@ -160,8 +160,8 @@ extraSecretNamesForEnvFrom: []
 ## Ref: https://docs.drone.io/installation/reference/
 ##
 env:
-  DRONE_RESOURCE_REQUEST_CPU: 2
-  DRONE_RESOURCE_REQUEST_MEMORY: 2000Mi
+  DRONE_RESOURCE_REQUEST_CPU: 500
+  DRONE_RESOURCE_REQUEST_MEMORY: 500Mi
   ## REQUIRED: Set the user-visible Drone hostname, sans protocol.
   ## Ref: https://docs.drone.io/installation/reference/drone-server-host/
   ##
