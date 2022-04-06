@@ -56,13 +56,13 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
-resources: {}
+resources:
   # limits:
   #   cpu: 100m
   #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+  requests:
+     cpu: 100m
+     memory: 128Mi
 
 ## If you'd like to force the Drone runner to run on a specific node or set of nodes,
 ## set a selector here.
@@ -111,7 +111,7 @@ rbac:
 ##
 env:
   DRONE_POLICY_FILE: /mnt/conf/policy.yaml
-  DRONE_RESOURCE_REQUEST_CPU: 2000
+  DRONE_RESOURCE_REQUEST_CPU: 3000
   DRONE_RESOURCE_REQUEST_MEMORY: 2000Mi
   ## REQUIRED: Set the secret secret token that the Kubernetes runner and its runners will use
   ## to authenticate. This is commented out in order to leave you the ability to set the

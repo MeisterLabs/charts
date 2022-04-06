@@ -55,13 +55,13 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
-resources: {}
+resources: 
   # limits:
   #   cpu: 100m
   #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+  requests:
+    cpu: 300m
+    memory: 128Mi
 
 ## If you'd like to force the Drone server to run on a specific node or set of nodes,
 ## set a selector here.
