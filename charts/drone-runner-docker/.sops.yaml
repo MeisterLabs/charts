@@ -1,0 +1,3 @@
+creation_rules:
+  - path_regex: secrets\.production\.yaml$
+    gcp_kms: projects/meisterlabs-prod/locations/global/keyRings/sops/cryptoKeys/sops-key
