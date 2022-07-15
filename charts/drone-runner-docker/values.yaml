@@ -33,12 +33,12 @@ fullnameOverride: ""
 
 serviceAccount:
   # Specifies whether a service account should be created
-  create: true
+  create: false
   # Annotations to add to the service account
   annotations: {}
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: ""
+  name: "drone-runner-kube"
 
 podAnnotations: {}
 
@@ -102,11 +102,17 @@ affinity: {}
 ## Volumes here per the Pod spec's "volumes" section.
 ## Ref: https://kubernetes.io/docs/concepts/storage/volumes/
 ##
-extraVolumes: []
+extraVolumes: 
+  - name: drone-runner-kube ##{{ include "drone-runner-kube.fullname" . }}
+    configMap:
+      name: drone-runner-kube ##{{ include "drone-runner-kube.fullname" . }}
 ## If you have declared extra volumes, mount them here, per the Pod Container's
 ## "volumeMounts" section.
 ##
-extraVolumeMounts: []
+extraVolumeMounts: 
+  - name: drone-runner-kube ##{{ include "drone-runner-kube.fullname" . }}
+    mountPath: /mnt/conf/policy.yaml
+    subPath: policy.yaml
 
 ## If you'd like to provide your own Kubernetes Secret object instead of passing your values
 ## in un-encrypted, pass in the name of a created + populated Secret in the same Namespace
@@ -129,13 +135,21 @@ env:
   ##
   # DRONE_RPC_SECRET:
 
+  DRONE_RESOURCE_REQUEST_CPU: 3000
+  DRONE_RESOURCE_REQUEST_MEMORY: 2000Mi
+
   ## The hostname/IP (and optionally the port) for your Kubernetes runner. Defaults to the "drone"
   ## service that the drone server Chart creates by default.
-  ## Ref: https://docs.drone.io/runner/docker/configuration/reference/drone-rpc-host/
+  ## Ref: https://kube-runner.docs.drone.io/installation/reference/drone-rpc-host/
   ##
-  DRONE_RPC_HOST: drone
+  DRONE_RPC_HOST: drone-staging.meisterlabs.com
 
   ## The protocol to use for communication with Drone server.
-  ## Ref: https://docs.drone.io/runner/docker/configuration/reference/drone-rpc-proto/
+  ## Ref: https://kube-runner.docs.drone.io/installation/reference/drone-rpc-proto/
   ##
-  DRONE_RPC_PROTO: http
+  DRONE_RPC_PROTO: https
+
+  ## Determines the default Kubernetes namespace for Drone builds to run in.
+  ## Ref: https://kube-runner.docs.drone.io/installation/reference/drone-namespace-default/
+  ##
+  DRONE_NAMESPACE_DEFAULT: drone
