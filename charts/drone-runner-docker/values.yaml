@@ -92,9 +92,13 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
-nodeSelector: {}
+nodeSelector:
+  pool-type: worker
 
-tolerations: []
+tolerations: 
+  - key: is-system-pool
+    value: "false"
+    effect: "NoSchedule"
 
 affinity: {}
 
