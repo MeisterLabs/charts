@@ -113,7 +113,7 @@ persistentVolume:
 
   ## Drone server data Persistent Volume size
   ##
-  size: 8Gi
+  size: 40Gi
 
   ## Drone server data Persistent Volume Storage Class
   ## If defined, storageClassName: <storageClass>
